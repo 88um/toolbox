@@ -67,9 +67,9 @@ const LoginForm: React.FC<LoginFormProps> =({}) => {
                     <FormItem>
                         <FormLabel>Password</FormLabel>
                         <FormControl>
-                            <div className='flex items-center px-2 border rounded focus-within:border-blue-300'>
+                            <div className='flex items-center px-2 border rounded focus-within:border-blue-300 focus-within:border-2'>
                             <Lock/>
-                            <Input {...field} placeholder="Password" className='border-none focus-within:border-2' type='password'/>
+                            <Input {...field} placeholder="Password" className='border-none ' type='password'/>
                             </div>
                             
                         </FormControl>

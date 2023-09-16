@@ -1,10 +1,13 @@
 'use client';
+const shell = require('electron').shell;
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Mail } from 'lucide-react';
+import { KeyRound, Lock, Mail, User } from 'lucide-react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod'
-import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form';
+import { Button } from '../ui/button';
+import { Checkbox } from '../ui/checkbox';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { Input } from '../ui/input';
 
 interface RegisterFormProps {
@@ -52,7 +55,24 @@ const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
   return (
     <div>
     <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 flex flex-col space-y-5">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="mt-6 grid grid-cols-2 gap-x-4 gap-y-5">
+            <FormField
+            name = "email"
+            control={form.control}
+            render = {({field}) =>(
+                <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                        <div className='flex items-center px-2 border rounded focus-within:border-blue-300 focus-within:border-2'>
+                            <Mail/>
+                            <Input {...field} placeholder="Email" className='border-none' type='email'/>
+                        </div>
+                        
+                    </FormControl>
+                    <FormMessage/>
+                </FormItem>
+            )}
+            />
             <FormField
             name = "username"
             control={form.control}
@@ -61,8 +81,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
                     <FormLabel>Username</FormLabel>
                     <FormControl>
                         <div className='flex items-center px-2 border rounded focus-within:border-blue-300 focus-within:border-2'>
-                            <Mail/>
-                            <Input {...field} placeholder="Email/Username" className='border-none'/>
+                            <User/>
+                            <Input {...field} placeholder="Username" className='border-none'/>
                         </div>
                         
                     </FormControl>
@@ -75,11 +95,11 @@ const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
             control={form.control}
             render = {({field}) =>(
                 <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel> Password</FormLabel>
                     <FormControl>
-                        <div className='flex items-center px-2 border rounded focus-within:border-blue-300'>
+                        <div className='flex items-center px-2 border rounded focus-within:border-blue-300 focus-within:border-2'>
                         <Lock/>
-                        <Input {...field} placeholder="Password" className='border-none focus-within:border-2' type='password'/>
+                        <Input {...field} placeholder="Password" className='border-none ' type='password'/>
                         </div>
                         
                     </FormControl>
@@ -87,26 +107,62 @@ const RegisterForm: React.FC<RegisterFormProps> = ({}) => {
                 </FormItem>
             )}
             />
-            <div className=''>
-                <p className='pb-3 text-xs text-gray-500 underline cursor-pointer' onClick={onForget} >
-                    Forgot Password?
-                </p>
+            <FormField
+            name = "confirmPassword"
+            control={form.control}
+            render = {({field}) =>(
+                <FormItem>
+                    <FormLabel> Confirm Password</FormLabel>
+                    <FormControl>
+                        <div className='flex items-center px-2 border rounded focus-within:border-blue-300 focus-within:border-2'>
+                        <KeyRound/>
+                        <Input {...field} placeholder="Confirm Password" className='border-none ' type='password'/>
+                        </div>
+                        
+                    </FormControl>
+                    <FormMessage />
+                </FormItem>
+            )}
+            />
+            <FormField
+              control={form.control}
+              name="terms"
+              render={({ field }) => (
+                <FormItem className="">
+                  <FormControl>
+                    <div className="flex items-start space-x-3 pl-2 pt-2">
+                      <Checkbox
+                      
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                      <p className="text-xs text-gray-500 cursor-pointer">
+                        I agree to all <span className='underline' onClick ={() => shell.openExternal('https://google.com')}>Terms &amp; Conditions</span>
+                      </p>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className='col-span-2 mt-3'>
                 <Button className='w-full rounded py-3' type='submit' disabled={isLoading}>
                     <div className='font-medium'>
-                        Login
+                        Register
                     </div>
                 </Button>
             </div>
         </form>
     </Form>
     <div>
+       
         <div className=" flex justify-center  text-xs  mt-5  px-2  text-gray-500 ">
           <div>
-            New to ToolBox?{" "}
+            Already have an account?{" "}
             <span className="underline cursor-pointer">
               {" "}
-              <Link href={'/register'}>
-              Create an account
+              <Link href={'/login'}>
+              Login
               </Link>
             </span>
           </div>

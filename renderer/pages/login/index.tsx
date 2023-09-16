@@ -1,6 +1,7 @@
 "use client";
 
 import { DollarSign } from "lucide-react";
+import { useRouter } from "next/router";
 import { FaToolbox } from "react-icons/fa";
 import LoginForm from "../../components/forms/LoginForm";
 import {
@@ -9,10 +10,16 @@ import {
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
+import useCurrentUser from "../../hooks/useCurrentUser";
 
 interface LoginPageProps {}
 
 const LoginPage: React.FC<LoginPageProps> = ({}) => {
+    const currentUser = useCurrentUser();
+    const router = useRouter()
+    if (currentUser?.customer) {
+        router.push('/home')
+    }
   return (
     <div className="flex flex-col h-screen justify-center items-center bg-gradient-to-b from-[#31b6b1]  to-[#3b92d6]">
       <Card className="p-8 mx-auto rounded-xl bg-white">
@@ -25,7 +32,7 @@ const LoginPage: React.FC<LoginPageProps> = ({}) => {
               </div>
             </div>
           </div>
-          <CardTitle className="text-center ">Login To Continue</CardTitle>
+          <CardTitle className="text-center ">Login To ToolBox</CardTitle>
         </CardHeader>
         <CardContent>
           <LoginForm />
