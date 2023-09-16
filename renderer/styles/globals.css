@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Import all OTF files from the specified directory */
+
+@font-face {
+  font-family: 'neue';
+  font-style: normal;
+  src: url('/fonts/neue-thin.otf') format('otf');
+}
+@layer base {
+  body {
+    @apply bg-[#f8f9fd]  m-0;
+  }
+}
+
+@layer components {
+  .btn-blue {
+    @apply text-white font-bold px-4 py-2 rounded bg-blue-600 hover:bg-blue-500;
+  }
+}
