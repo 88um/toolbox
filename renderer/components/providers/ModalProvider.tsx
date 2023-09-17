@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import AccountModal from "../modals/AccountModal";
 import ErrorModal from "../modals/ErrorModal";
 
 interface ModalProviderProps {
@@ -19,6 +20,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({}) => {
   }
   return (
     <div>
+        <AccountModal/>
         <ErrorModal />
     </div>
   );

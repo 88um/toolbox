@@ -113,7 +113,7 @@ const Sidebar: React.FC<SidebarProps> = ({ admin = false }) => {
           <Link href="/accounts" className="flex items-center pl-3 pb-6">
             <div className="flex items-center space-x-3">
               <FaToolbox className="h-6 w-6" />
-              <div className="font-light text-lg ">
+              <div className="font-light text-lg mx-auto text-center">
                 Toolbox Client <span className="">v1.0</span>{" "}
               </div>
             </div>

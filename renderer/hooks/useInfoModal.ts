@@ -15,7 +15,7 @@ const userInfoModal = create<ModalStore>((set) => ({
   onClose: () => set({ isOpen: false }),
   setType: (type: Types) => set({ type: type }),
   type: "error",
-  isOpen: true,
+  isOpen: false,
 }));
 
 

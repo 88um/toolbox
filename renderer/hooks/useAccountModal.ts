@@ -8,7 +8,7 @@ interface ModalStore {
   onClose: () => void;
   setType: (type: Types) => void;
   setAccount: (account: Account) => void;
-  type: string;
+  type: Types;
   account? : Account 
   isOpen: boolean;
 }
@@ -18,7 +18,7 @@ const useAccountModal = create<ModalStore>((set) => ({
   onClose: () => set({ isOpen: false }),
   setType: (type: Types) => set({ type: type }),
   setAccount: (account: Account ) => set({ account: account}),
-  type: "info",
+  type: "login",
   isOpen: false,
   account: undefined
 }));

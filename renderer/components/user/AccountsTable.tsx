@@ -1,4 +1,5 @@
 import { Plus } from "lucide-react";
+import useAccountModal from "../../hooks/useAccountModal";
 import ProfileCard from "../cards/ProfileCard";
 import { Button } from "../ui/button";
 import {
@@ -59,6 +60,7 @@ const invoices = [
 interface AccountsTableProps {}
 
 const AccountsTable: React.FC<AccountsTableProps> = ({}) => {
+  const accountmodal = useAccountModal()
   return (
     <div className="w-full flex flex-col items-start  bg-white rounded-2xl p-6 space-y-6">
             <div className="px-4 flex w-full items-center justify-between">
@@ -66,7 +68,7 @@ const AccountsTable: React.FC<AccountsTableProps> = ({}) => {
           <h1 className="font-bold text-xl text-gray-500">Your Accounts </h1>
         </div>
         <div>
-          <Button className="flex bg-gradient-to-r from-[#2acb96] via-[#1ccc94] to-[#3ecc9c] text-white rounded-3xl hover:bg-[#2acb96]/20">
+          <Button className="flex bg-gradient-to-r from-[#2acb96] via-[#1ccc94] to-[#3ecc9c] text-white rounded-3xl hover:bg-[#2acb96]/20" onClick={() => accountmodal.onOpen()}>
             Add New
             <Plus className="ml-2 h-4 w-4" />
           </Button>

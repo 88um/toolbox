@@ -12,7 +12,7 @@ const Navbar: React.FC<NavbarProps> = ({}) => {
   const pathname = router.pathname.slice(1);
   const currentUser = useCurrentUser()
   if (!currentUser?.customer) {
-    router.push('/login')
+    //router.push('/login')
   }
   return (
     <div className="mx-auto p-4 flex items-center bg-white w-full shadow-sm">
