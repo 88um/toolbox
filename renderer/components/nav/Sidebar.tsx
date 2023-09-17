@@ -51,7 +51,7 @@ const user_routes = [
   {
     label: "Followers Bot",
     icon: User,
-    href: "/reply",
+    href: "/followers",
     color: "text-white",
   },
   {
@@ -63,14 +63,14 @@ const user_routes = [
   {
     label: "Help",
     icon: MessageSquare,
-    href: "#",
+    href: "/help",
     color: "text-muted-foreground",
   },
 
   {
     label: "Settings",
     icon: Settings,
-    href: "#",
+    href: "/settings",
     color: "text-muted-foreground",
   },
 ];
@@ -149,7 +149,7 @@ const Sidebar: React.FC<SidebarProps> = ({ admin = false }) => {
             ))}
           </div>
         </div>
-        <div className="pt-6">
+        <div className="pt-2">
           <ProButton apiLimitCount={2} isPro={false} />
         </div>
       </div>
